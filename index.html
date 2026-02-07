@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Valentine ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:black;color:white;font-family:Poppins;overflow:hidden}
+
+section{
+position:absolute;inset:0;display:none;
+justify-content:center;align-items:center;
+flex-direction:column;text-align:center;padding:30px;
+animation:fade .8s
+}
+section.active{display:flex}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+
+h1{font-family:Dancing Script;font-size:3em}
+
+.btn{
+padding:14px 30px;border:none;border-radius:30px;
+background:white;color:black;margin-top:25px;cursor:pointer;
+transition:.3s
+}
+.btn:hover{transform:scale(1.1)}
+
+#page1{background:linear-gradient(135deg,#ff416c,#ff4b2b)}
+#page2{background:url("bg1.jpg") center/cover}
+
+.overlay{
+background:rgba(0,0,0,.7);padding:40px;border-radius:20px;max-width:700px
+}
+
+input[type=range]{width:250px;margin-top:20px}
+
+.envelopes{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;margin-top:30px;max-width:420px
+}
+
+.envelope{
+width:160px;height:110px;
+background:#fff;color:black;border-radius:10px;
+cursor:pointer;position:relative;perspective:800px
+}
+
+.env-inner{
+width:100%;height:100%;position:absolute;
+transform-style:preserve-3d;transition:.8s
+}
+
+.envelope.open .env-inner{transform:rotateX(180deg)}
+
+.front,.back{
+position:absolute;inset:0;display:flex;
+align-items:center;justify-content:center;
+border-radius:10px;font-weight:bold;
+backface-visibility:hidden
+}
+
+.front{background:white}
+.back{background:#ffe6ee;transform:rotateX(180deg)}
+
+#modal{
+position:fixed;inset:0;background:rgba(0,0,0,.85);
+display:none;justify-content:center;align-items:center;z-index:99
+}
+#modal.active{display:flex}
+
+.card{
+background:white;color:black;padding:30px;border-radius:20px;
+max-width:400px;animation:pop .4s;text-align:center
+}
+@keyframes pop{from{transform:scale(.7)}}
+
+.heart{position:absolute;font-size:18px;animation:float 3s forwards}
+@keyframes float{to{transform:translateY(-150px);opacity:0}}
+
+.cursor-heart{
+position:fixed;pointer-events:none;font-size:14px;
+animation:cursor 1s forwards
+}
+@keyframes cursor{to{transform:translateY(-40px);opacity:0}}
+
+#effect img{
+width:200px;border-radius:50%;
+box-shadow:0 0 40px hotpink;
+animation:pulse 2s infinite alternate
+}
+@keyframes pulse{to{transform:scale(1.08)}}
+
+#kiss{font-size:80px;animation:kiss 1.5s infinite alternate}
+@keyframes kiss{to{transform:scale(1.2)}}
+
+#final{background:linear-gradient(135deg,#ff758c,#ff7eb3)}
+
+.confetti{
+position:fixed;width:10px;height:10px;
+animation:fall 3s linear forwards
+}
+@keyframes fall{to{transform:translateY(100vh) rotate(360deg);opacity:0}}
+
+.petal{
+position:fixed;
+font-size:34px;
+animation:petalFall 10s linear forwards;
+z-index:999;
+pointer-events:none;
+}
+@keyframes petalFall{
+to{transform:translateY(100vh) rotate(360deg);opacity:0}
+}
+
+.ring{
+position:fixed;
+font-size:28px;
+animation:ringFall 9s linear forwards;
+z-index:999;
+pointer-events:none;
+}
+@keyframes ringFall{
+to{transform:translateY(100vh) rotate(360deg);opacity:0}
+}
+
+.chocolate{
+position:fixed;
+font-size:30px;
+animation:chocoFall 8s linear forwards;
+z-index:999;
+pointer-events:none;
+}
+@keyframes chocoFall{
+to{transform:translateY(100vh) rotate(360deg);opacity:0}
+}
+
+.teddy{
+position:fixed;
+font-size:32px;
+animation:teddyFall 9s linear forwards;
+pointer-events:none;
+z-index:999;
+}
+@keyframes teddyFall{
+to{transform:translateY(100vh) rotate(20deg);opacity:0}
+}
+
+.promise{
+position:fixed;
+font-size:30px;
+animation:promiseFall 8s linear forwards;
+pointer-events:none;
+z-index:999;
+}
+@keyframes promiseFall{
+to{transform:translateY(100vh) rotate(360deg);opacity:0}
+}
+
+#bouquet{
+width:180px;
+margin-top:20px;
+filter:drop-shadow(0 0 25px white);
+animation:pulse 2s infinite alternate;
+}
+
+#day12pic, #day13pic{
+position:fixed;
+width:200px;
+border-radius:20px;
+z-index:999;
+display:none;
+}
+
+#day12pic{bottom:20px;right:20px}
+#day13pic{bottom:20px;left:20px}
+
+/* Button unlock animation */
+#proposeBtn:enabled{
+animation:pulseBtn 1s infinite alternate;
+cursor:pointer;
+}
+@keyframes pulseBtn{
+from {transform:scale(1); background:#fff;color:black;}
+to {transform:scale(1.1); background:#ff4b2b;color:white;}
+}
+</style>
+</head>
+
+<body>
+
+
+<section id="page1" class="active">
+<h1>HAPPY 9 MONTHS MY LITTLE BABY PRINCESS 💗🙈</h1>
+<p>HERES SMTH FOR MY LITTLE KITTEN MWAHHHHHH❤️‍🩹😘</p>
+<button class="btn" onclick="go(2)">Start 💌</button>
+</section>
+
+<section id="page2">
+<div class="overlay">
+<p>
+Baby these 9 months with you have been the best in my whole life. I cant imagine another way i could have spend this whole time any other way. You are the best wife anyone could ever have asked for. The way you make happy, I have never felt like this before. And I never want to stop feeling this way baby. I cant wait for the day we get married for real baby. I cant wait to spend my whole life with you.<br>
+I love you so much my baby MWAHHHHHH💗😘<br>
+I HOPE WE STAY TOGETHER FOREVER AND EVER AND I AM ALWAYS URS AND UR ALWAYS MINE MY SWEET LITTLE BABY
+</p>
+<button class="btn" onclick="go(3)">Continue →</button>
+</div>
+</section>
+
+<section id="happy">
+<h1>OKAY HOW HAPPY ARE U (SLIDE IT OKAY, IT BETTER BE FULL😡)?</h1>
+<input type="range" min="1" max="10" value="5" id="scale">
+<button class="btn" onclick="checkHappy()">Submit</button>
+</section>
+
+<section id="effect">
+<h1>NOW AM GONNA MAKE U HAPPIER YAY TRUST😌</h1>
+<img src="me.jpg">
+<button class="btn" onclick="go(5)">Continue 💖</button>
+</section>
+
+<section id="letters">
+<h1>LETTERS FOR MY CUTE LITTLE BABY 💌</h1>
+<div class="envelopes" id="env"></div>
+<!-- Propose button -->
+<button id="proposeBtn" class="btn" disabled>🔒 Click Me</button>
+</section>
+
+<div id="modal">
+<div class="card">
+<h3 id="day"></h3>
+<p id="text"></p>
+<img id="bouquet" style="display:none" src="whiteflower.png">
+<button class="btn" onclick="closeLetter()">Close</button>
+</div>
+</div>
+
+
+
+<section id="final">
+<h1>Will you be my Valentine? 🥺🌹</h1>
+<div id="kiss">💋</div>
+<button class="btn" onclick="confetti()">YES ❤️</button>
+<button id="noBtn" class="btn" style="position:absolute;bottom:80px">NO 💔</button>
+</section>
+
+<audio id="music" loop src="song.mp3"></audio>
+
+
+<script>
+// Sections
+const sections=["","page1","page2","happy","effect","letters","final"];
+function go(n){
+
+// PLAY MUSIC ON FIRST CLICK
+if(n===2){
+const m=document.getElementById("music");
+m.volume=0.8;
+m.play();
+}
+
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(sections[n]).classList.add("active");
+}
+
+
+// Happiness check
+function checkHappy(){
+if(scale.value!=10) alert("That’s not true fakie 😡 NOW DO AGAIN MEANIE 😡");
+else go(4);
+}
+
+// Letters
+const letters=[
+{day:"Feb 7",text:"ROSE DAY🌹💐: I rlly wish i could have given u a rose today. BUT ISSOKIE i gave in call hehehe. I love you so much my baby (open the rest of the letters only on those certain dates okay thanks mwah.) "},
+{day:"Feb 8",text:"PROPOSE DAY💍: I have nothing to say here baby u just have to wait and see😼"},
+{day:"Feb 9",text:"CHOCOLATE DAY🍫: HI TODAY IS ALL ABT CHOCOLATES AND ILL FEED U SM CHOCOLATES SOON SO GET READY i miss you I BET WE ARE ON CALL RN but this is future not rn me okay i am lost i miss you wyd i wanna feed u chocolates come over."},
+{day:"Feb 10",text:"TEDDY DAY🧸: I REALLY WANTED TO GIVE U ONE TDY BUT amma appa😞. SOOOO for this year u gotta manage with that old one i gave🙁. Sorry my little cutie😞. Next year ill give all these letters and give u all the presents irl and make it sm more better my baby mwahhh."},
+{day:"Feb 11",text:"PROMISE DAY🤞🏻: Baby I know I have broken every single promise i made to you. But baby i promise I will build again from the start all over again. I will be better for you. I will never make you cry again baby. I will be your sweet little baby boy and love you forever and ever and ever. I promise my love. I promise"},
+{day:"Feb 12",text:"HUG DAY🫂: SO TODAY IS HUG DAY AND ITS A THURSDAY. I RLLY WANNA HUG U IN SKL BUT IDK ITS SCARY LETS SEE BABY IF OUR LUCK IS GOOD U WILL BE IN MY ARMS TDY ATLEAST FOR A FEW SECONDS.LETS SEE YAY HEHHEHE"},
+{day:"Feb 13",text:"KISS DAY💋:WELL THERES NO WAY WE CAN KISS TODAY SO IMMA JS LOOK AT OUR KISSING PICS AND CRY. can i bite u. do u miss me. where is future me right now. prob in call w you.okay i am ceying so theres nothing much here"},
+{day:"Feb 14 ❤️",text:"FINALLY HAPPY VALENTINES DAY MY BABY. THIS IS OUR FIRST VALENTINES TOGETHER AND I KNOW WE ARE GONNA HAVE SM MORE TOGETHER. I LOVE YOU SO MUCH MY BABY. LIKE GENUINELY YOUR THE BEST WIFE ANYONE COULD EVER ASK FOR. THE WAY U LOVE ME AND TAKE CARE OF ME LIKE A LITTLE BABY. I HAVE NEVER BEEN TREATED LIKE THIS. YOU ARE LIKE SO PERFECT I REALLY DONT KNOW WHAT I DID TO DESERVE YOU MY LOVE. BECAUSE THE BEST THING THAT HAS EVER HAPPENED IN MY LIFE. THANK YOU SO MUCH FOR EVERYTHING BABY I LOVE YOU SO MUCH MY PRINCESS MWAH💗"}
+];
+
+const env=document.getElementById("env");
+let openedLetters = new Array(letters.length).fill(false); // track opened letters
+
+letters.forEach((l,i)=>{
+const e=document.createElement("div");
+e.className="envelope";
+e.innerHTML=`
+<div class="env-inner">
+<div class="front">${l.day}</div>
+<div class="back">Open 💌</div>
+</div>`;
+e.onclick=()=>{
+e.classList.add("open");
+openLetter(i);
+};
+env.appendChild(e);
+});
+
+// Open letter function
+function openLetter(i){
+document.getElementById("modal").classList.add("active");
+document.getElementById("day").innerText=letters[i].day;
+typeText(letters[i].text);
+burst();
+
+// Mark letter opened
+openedLetters[i] = true;
+checkAllLettersOpened();
+
+// Effects
+if(i===0){document.getElementById("bouquet").style.display="block"; rosePetals();}
+else{document.getElementById("bouquet").style.display="none";}
+
+if(i===1){ringFall();}
+if(i===2){chocolateFall();}
+if(i===3){teddyFall();}
+if(i===4){promiseFall();}
+if(i===5){document.getElementById("day12pic").style.display="block";}
+if(i===6){document.getElementById("day13pic").style.display="block";}
+}
+
+function closeLetter(){
+document.getElementById("modal").classList.remove("active");
+}
+
+function typeText(t){
+const el=document.getElementById("text");
+el.innerHTML="";
+let i=0;
+const x=setInterval(()=>{
+el.innerHTML += t[i++];
+if(i>=t.length) clearInterval(x);
+},30);
+}
+
+// Heart burst
+function burst(){
+for(let i=0;i<15;i++){
+const h=document.createElement("div");
+h.className="heart";
+h.innerText="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.bottom="20px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
+}
+}
+
+// Roses
+function rosePetals(){
+const colors=["🌹","🌸","🌺"];
+let count=0;
+const rain=setInterval(()=>{
+for(let i=0;i<8;i++){
+const p=document.createElement("div");
+p.className="petal";
+p.innerText=colors[Math.floor(Math.random()*colors.length)];
+p.style.left=Math.random()*100+"vw";
+p.style.top="-40px";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),10000);
+}
+count++;
+if(count>25) clearInterval(rain);
+},200);
+}
+
+// Rings
+function ringFall(){
+const rings=["💍","💎"];
+let count=0;
+const fall=setInterval(()=>{
+const r=document.createElement("div");
+r.className="ring";
+r.innerText=rings[Math.floor(Math.random()*rings.length)];
+r.style.left=Math.random()*100+"vw";
+r.style.top="-40px";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),9000);
+count++;
+if(count>40) clearInterval(fall);
+},300);
+}
+
+// Chocolates
+function chocolateFall(){
+const choco=["🍫","🍬","🍩"];
+let count=0;
+const fall=setInterval(()=>{
+const c=document.createElement("div");
+c.className="chocolate";
+c.innerText=choco[Math.floor(Math.random()*choco.length)];
+c.style.left=Math.random()*100+"vw";
+c.style.top="-40px";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),8000);
+count++;
+if(count>35) clearInterval(fall);
+},320);
+}
+
+// Teddy
+function teddyFall(){
+const t=["🧸"];
+let count=0;
+const fall=setInterval(()=>{
+const e=document.createElement("div");
+e.className="teddy";
+e.innerText=t[0];
+e.style.left=Math.random()*100+"vw";
+e.style.top="-40px";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),9000);
+count++;
+if(count>35) clearInterval(fall);
+},350);
+}
+
+// Promise emojis
+function promiseFall(){
+const p=["🤞🏻","💗"];
+let count=0;
+const fall=setInterval(()=>{
+const e=document.createElement("div");
+e.className="promise";
+e.innerText=p[Math.floor(Math.random()*p.length)];
+e.style.left=Math.random()*100+"vw";
+e.style.top="-40px";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),8000);
+count++;
+if(count>40) clearInterval(fall);
+},300);
+}
+
+// Check all letters opened
+function checkAllLettersOpened(){
+const btn = document.getElementById("proposeBtn");
+if(openedLetters.every(v=>v===true)){
+btn.disabled = false;
+btn.innerText = "Click Me ❤️";
+btn.style.animation = "pulseBtn 1s infinite alternate";
+}
+}
+
+// Cursor hearts
+document.addEventListener("mousemove",e=>{
+const h=document.createElement("div");
+h.className="cursor-heart";
+h.innerText="💗";
+h.style.left=e.clientX+"px";
+h.style.top=e.clientY+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),1000);
+});
+
+// Propose button click
+document.getElementById("proposeBtn").onclick = ()=>{
+go(6); // final proposal page
+}
+
+// Confetti on final page
+function confetti(){
+for(let i=0;i<120;i++){
+const c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+alert("OMGGG THANK YOU SM BABY U SAID YES YAY I LOVE YOU SM MWAHHHHHH💗💋(not like u had another option)");
+}
+
+// Runaway NO button
+const noBtn=document.getElementById("noBtn");
+if(noBtn){
+noBtn.addEventListener("mouseover",()=>{
+noBtn.style.left=Math.random()*80+"vw";
+noBtn.style.top=Math.random()*80+"vh";
+});
+}
+
+</script>
+
+</body>
+</html>
